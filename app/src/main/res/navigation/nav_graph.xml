@@ -7,8 +7,27 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.example.e_commerce.ui.HomeFragment"
-        android:label="@string/fragment_home"
+        android:name="com.example.e_commerce.ui.home.HomeFragment"
+        android:label="Home"
         tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/fragment_basket"
+        android:name="com.example.e_commerce.ui.basket.Basket"
+        android:label="Basket"
+        tools:layout="@layout/fragment_basket"/>
+
+    <fragment
+        android:id="@+id/fragment_star"
+        android:name="com.example.e_commerce.ui.favorite.Favorite"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_favorite"/>
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.e_commerce.ui.profile.Profile"
+        android:label="Favorite"
+        tools:layout="@layout/fragment_profile"/>
+
 
 </navigation>
