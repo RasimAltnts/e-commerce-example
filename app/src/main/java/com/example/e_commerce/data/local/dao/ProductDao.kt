@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.e_commerce.data.local.entity.FavoriteEntity
-import com.example.e_commerce.data.local.entity.ProductEntity
 
 @Dao
 interface ProductDao {
@@ -18,14 +17,4 @@ interface ProductDao {
 
     @Delete
     suspend fun deleteFavorite(favorite: FavoriteEntity)
-
-    @Query("SELECT * FROM products")
-    suspend fun getAllProduct(): List<ProductEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertProduct(product: ProductEntity)
-
-    @Delete
-    suspend fun deleteProduct(product: ProductEntity)
-
 }
