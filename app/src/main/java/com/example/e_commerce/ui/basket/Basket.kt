@@ -13,6 +13,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerce.databinding.FragmentBasketBinding
 import com.example.e_commerce.ui.adapter.OrdersAdapter
+import com.example.e_commerce.ui.model.OrdersUiModel
+import com.example.e_commerce.utils.enums.OrdersProcessEnum
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,9 +25,16 @@ class Basket : Fragment() {
 
     private lateinit var adapter: OrdersAdapter
 
+    private val onClickMinus: (OrdersUiModel) -> Unit = { uiModel->
+        viewModel.updateOrders(uiModel, OrdersProcessEnum.MINUS)
+    }
+
+    private val onClickPlus: (OrdersUiModel) -> Unit = { uiModel->
+        viewModel.updateOrders(uiModel, OrdersProcessEnum.PLUS)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -45,7 +54,7 @@ class Basket : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = OrdersAdapter(orders = emptyList(),)
+        adapter = OrdersAdapter(orders = emptyList(), onClickMinus = onClickMinus, onClickPlus = onClickPlus)
         binding.ordersRecycleView.layoutManager = LinearLayoutManager(requireContext())
         binding.ordersRecycleView.adapter = adapter
     }

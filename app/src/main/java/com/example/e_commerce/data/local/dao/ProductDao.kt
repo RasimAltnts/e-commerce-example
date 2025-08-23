@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.e_commerce.data.local.entity.FavoriteEntity
 import com.example.e_commerce.data.local.entity.ProductEntity
 
@@ -30,5 +31,8 @@ interface ProductDao {
 
     @Query("SELECT * FROM products WHERE id = :id")
     suspend fun getProduct(id: String): ProductEntity?
+
+    @Update
+    suspend fun updateProduct(product: ProductEntity)
 
 }

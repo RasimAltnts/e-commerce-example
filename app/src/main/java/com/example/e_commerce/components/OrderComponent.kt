@@ -18,4 +18,19 @@ class OrderComponent @JvmOverloads constructor(
         val inflater = LayoutInflater.from(context)
         binding = OrderComponentBinding.inflate(inflater, this, true)
     }
+
+    fun setData(
+        orderCounter: Int,
+        onClickMinus: () -> Unit,
+        onClickPlus: () -> Unit
+    ) {
+        binding.counterTextView.text = orderCounter.toString()
+        binding.minusTextView.setOnClickListener {
+            onClickMinus()
+        }
+        binding.plusTextView.setOnClickListener {
+            onClickPlus()
+        }
+
+    }
 }

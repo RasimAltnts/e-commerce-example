@@ -41,4 +41,8 @@ class LocalProductRepositoryImpl @Inject constructor(
     override suspend fun getProduct(id: String): ProductEntity? = withContext(Dispatchers.IO) {
         return@withContext productDao.getProduct(id)
     }
+
+    override suspend fun updateProduct(product: ProductEntity) = withContext(Dispatchers.IO) {
+        return@withContext productDao.updateProduct(product)
+    }
 }

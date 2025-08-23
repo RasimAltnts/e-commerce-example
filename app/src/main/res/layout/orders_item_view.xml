@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.example.e_commerce.components.OrderComponent
-        android:id="@+id/orderCounter"
+        android:id="@+id/orderComponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
