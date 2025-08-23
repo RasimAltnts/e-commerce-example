@@ -65,6 +65,15 @@ class Basket : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.orders.collect { orders ->
                     adapter.submitList(orders)
+                    viewModel.calculateTotalPrice(orders)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.totalPrice.collect { totalPrice ->
+                    binding.totalPriceTextView.text = "$totalPrice ₺"
                 }
             }
         }

@@ -22,6 +22,9 @@ class BasketViewModel @Inject constructor(
     private val _orders = MutableStateFlow<List<OrdersUiModel>>(emptyList())
     val orders = _orders.asStateFlow()
 
+    private val _totalPrice = MutableStateFlow<Double>(0.0)
+    val totalPrice = _totalPrice.asStateFlow()
+
     fun getAllOrders() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -40,6 +43,23 @@ class BasketViewModel @Inject constructor(
             }catch (e: Exception) {
 
             }
+        }
+    }
+
+    fun calculateTotalPrice(list: List<OrdersUiModel>) {
+        viewModelScope.launch {
+            try {
+                var totalPrice: Double = 0.0
+                var productTotalPrice: Double = 0.0
+                list.forEach { item ->
+                    productTotalPrice = item.price.toDouble() * item.count
+                    totalPrice = totalPrice + productTotalPrice
+                }
+                _totalPrice.emit(totalPrice)
+            }catch (e: Exception) {
+
+            }
+
         }
     }
 }

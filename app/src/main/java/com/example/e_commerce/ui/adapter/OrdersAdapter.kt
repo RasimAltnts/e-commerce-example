@@ -47,7 +47,10 @@ class OrdersAdapter(
             onClickPlus: (OrdersUiModel) -> Unit
         ) {
             binding.productNameTextView.text = model.name
+            val totalPrice = model.price.toFloat() * model.count
+            val productText = "$totalPrice ₺ (Unit Price: ${model.price} ₺)"
             binding.productPriceTextView.text = model.price
+            binding.productPriceTextView.text = productText
 
             binding.orderComponent.setData(
                 model.count,
