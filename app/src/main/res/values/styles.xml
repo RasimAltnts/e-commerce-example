@@ -3,5 +3,12 @@
     <style name="montserrat_medium" parent="Theme.Ecommerce">
         <item name="android:textSize">@dimen/text_size_18</item>
         <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="default_button_style" parent="Theme.Ecommerce">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>
