@@ -22,7 +22,7 @@ object DatabaseModule {
             context,
             Database::class.java,
             "app_database"
-        ).build()
+        ).fallbackToDestructiveMigration().build() // Bu kisimda fallback kullanilmayabilir, migration yapilabilir
     }
 
     @Provides

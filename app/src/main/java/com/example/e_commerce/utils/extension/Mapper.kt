@@ -2,6 +2,7 @@ package com.example.e_commerce.utils.extension
 
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.data.local.entity.FavoriteEntity
+import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.domain.model.ProductModel
 
 /**
@@ -24,4 +25,13 @@ fun ProductModel.toUIModel(favoriteList: List<FavoriteEntity>?): List<ProductCom
 
 fun ProductComponentUIModel.toFavoriteEntity(): FavoriteEntity {
     return FavoriteEntity(this.id)
+}
+
+
+fun ProductComponentUIModel.toProductEntity(): ProductEntity {
+    return ProductEntity(
+        id = this.id,
+        name = this.name,
+        price = this.price,
+    )
 }

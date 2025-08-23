@@ -11,5 +11,6 @@ interface LocalProductRepository {
     suspend fun getAllProducts(): List<ProductEntity>
     suspend fun addProduct(item: ProductEntity)
     suspend fun deleteProduct(item: ProductEntity)
+    suspend fun getProduct(id: String): ProductEntity?
 
 }

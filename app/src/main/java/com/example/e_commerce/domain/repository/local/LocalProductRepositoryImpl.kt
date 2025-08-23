@@ -41,5 +41,7 @@ class LocalProductRepositoryImpl @Inject constructor(
         return@withContext productDao.deleteProduct(item)
     }
 
-
+    override suspend fun getProduct(id: String): ProductEntity? = withContext(Dispatchers.IO) {
+        return@withContext productDao.getProduct(id)
+    }
 }
