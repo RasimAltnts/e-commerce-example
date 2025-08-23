@@ -1,26 +1,63 @@
 package com.example.e_commerce.ui.basket
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.e_commerce.R
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.e_commerce.databinding.FragmentBasketBinding
+import com.example.e_commerce.ui.adapter.OrdersAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class Basket : Fragment() {
+    private lateinit var binding: FragmentBasketBinding
     private val viewModel: BasketViewModel by viewModels()
+
+    private lateinit var adapter: OrdersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_basket, container, false)
+        binding = FragmentBasketBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        initFlows()
+        viewModel.getAllOrders()
+    }
+
+    private fun initAdapter() {
+        adapter = OrdersAdapter(orders = emptyList(),)
+        binding.ordersRecycleView.layoutManager = LinearLayoutManager(requireContext())
+        binding.ordersRecycleView.adapter = adapter
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initFlows() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.orders.collect { orders ->
+                    adapter.submitList(orders)
+                }
+            }
+        }
     }
 }
