@@ -4,4 +4,5 @@
     <string name="fragment_basket">Basket</string>">
     <string name="fragment_star">Favori</string>
     <string name="fragment_profile">Profile</string>
+    <string name="filter">Filter</string>
 </resources>

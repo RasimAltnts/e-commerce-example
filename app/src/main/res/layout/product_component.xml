@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/productComponent"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/productContentImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/gray2"
+            android:layout_marginTop="@dimen/padding_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/favoriteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/star_background"
+            android:layout_marginTop="@dimen/padding_6"
+            android:layout_marginEnd="@dimen/padding_6"
+            android:elevation="1dp"
+            app:layout_constraintEnd_toEndOf="@+id/productContentImageView"
+            app:layout_constraintTop_toTopOf="@+id/productContentImageView" />
+
+
+        <TextView
+            android:id="@+id/priceTextView"
+            style="@style/montserrat_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:text="15.000 ₺"
+            android:textColor="@color/main"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="@+id/productContentImageView"
+            app:layout_constraintTop_toBottomOf="@+id/productContentImageView" />
+
+
+        <TextView
+            android:id="@+id/productNameTextView"
+            style="@style/montserrat_medium"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:maxLines="2"
+            android:text="iPhone 13 Pro Max 256Gb"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addCardButton"
+            style="@style/default_button_style"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:background="@drawable/button_blue_bg"
+            android:text="Add to Card"
+            app:backgroundTint="@null"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/productNameTextView"
+            app:layout_constraintStart_toStartOf="@+id/productNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
