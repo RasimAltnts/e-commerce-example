@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -36,8 +35,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /**
      * Kullanıcı addToCard buttonuna bastığında bunun altında çalışır
      */
-    private val addToCardListener: (ProductComponentUIModel) -> Unit = {
-
+    private val addToCardListener: (ProductComponentUIModel) -> Unit = { uiModel ->
+        viewModel.addToCard(uiModel)
     }
 
     /**
@@ -92,15 +91,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.products.collect { products ->
                     products?.let {
                         adapter.submitList(it)
-                    }
-                }
-
-                viewModel.saveProductStatus.collect { result ->
-                    if (result) {
-                        Toast.makeText(requireContext(),"Islem başarılı",Toast.LENGTH_SHORT).show()
-                    }
-                    else {
-                        Toast.makeText(requireContext(),"Islem başarısız",Toast.LENGTH_SHORT).show()
                     }
                 }
             }

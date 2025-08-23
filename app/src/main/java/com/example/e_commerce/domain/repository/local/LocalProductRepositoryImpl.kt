@@ -2,6 +2,7 @@ package com.example.e_commerce.domain.repository.local
 
 import com.example.e_commerce.data.local.dao.ProductDao
 import com.example.e_commerce.data.local.entity.FavoriteEntity
+import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.data.repository.local.LocalProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -26,5 +27,21 @@ class LocalProductRepositoryImpl @Inject constructor(
 
     override suspend fun deleteFavoriteProduct(item: FavoriteEntity) = withContext(Dispatchers.IO) {
         return@withContext productDao.deleteFavorite(item)
+    }
+
+    override suspend fun getAllProducts(): List<ProductEntity> = withContext(Dispatchers.IO) {
+        return@withContext productDao.getAllProduct()
+    }
+
+    override suspend fun addProduct(item: ProductEntity) = withContext(Dispatchers.IO) {
+        return@withContext productDao.insertProduct(item)
+    }
+
+    override suspend fun deleteProduct(item: ProductEntity) = withContext(Dispatchers.IO) {
+        return@withContext productDao.deleteProduct(item)
+    }
+
+    override suspend fun getProduct(id: String): ProductEntity? = withContext(Dispatchers.IO) {
+        return@withContext productDao.getProduct(id)
     }
 }
