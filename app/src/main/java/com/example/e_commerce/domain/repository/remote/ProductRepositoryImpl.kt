@@ -1,7 +1,7 @@
-package com.example.e_commerce.domain.repository
+package com.example.e_commerce.domain.repository.remote
 
 import com.example.e_commerce.data.api.ProductApi
-import com.example.e_commerce.data.repository.ProductRepository
+import com.example.e_commerce.data.repository.remote.ProductRepository
 import com.example.e_commerce.domain.model.ProductModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

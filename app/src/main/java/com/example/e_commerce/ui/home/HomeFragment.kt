@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -15,7 +16,6 @@ import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.databinding.FragmentHomeBinding
 import com.example.e_commerce.ui.adapter.EqualSpacingItemDecoration
 import com.example.e_commerce.ui.adapter.ProductAdapter
-import com.example.e_commerce.utils.util.dpToPx
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -29,8 +29,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     /**
      * Kullanıcı favorite buttonuna tıkladığında bunu altında çalışır
      */
-    private val onFavoriteClickListener: (ProductComponentUIModel) -> Unit = {
-
+    private val onFavoriteClickListener: (ProductComponentUIModel) -> Unit = { uiModel->
+        viewModel.updateFavoriteProduct(uiModel)
     }
 
     /**
@@ -44,7 +44,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
      * Kullanıcı Item a tıkladıgında bunun altında çalışır
      */
     private val onItemClickListener: (ProductComponentUIModel) -> Unit = {
-
+        println("onItemClicked::${it.isFavorite}")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,6 +92,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 viewModel.products.collect { products ->
                     products?.let {
                         adapter.submitList(it)
+                    }
+                }
+
+                viewModel.saveProductStatus.collect { result ->
+                    if (result) {
+                        Toast.makeText(requireContext(),"Islem başarılı",Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        Toast.makeText(requireContext(),"Islem başarısız",Toast.LENGTH_SHORT).show()
                     }
                 }
             }

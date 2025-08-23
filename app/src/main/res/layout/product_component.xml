@@ -15,7 +15,7 @@
             android:id="@+id/productContentImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@color/gray"
+            android:background="@color/gray2"
             android:layout_marginTop="@dimen/padding_10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +26,10 @@
             android:id="@+id/favoriteIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_star"
+            android:background="@drawable/star_background"
             android:layout_marginTop="@dimen/padding_6"
             android:layout_marginEnd="@dimen/padding_6"
+            android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="@+id/productContentImageView"
             app:layout_constraintTop_toTopOf="@+id/productContentImageView" />
 
