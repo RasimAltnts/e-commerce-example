@@ -3,9 +3,11 @@ package com.example.e_commerce.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.components.ProductComponentUIModel
+import com.example.e_commerce.domain.usecase.AddProductUseCase
 import com.example.e_commerce.domain.usecase.GetProductUseCase
 import com.example.e_commerce.domain.usecase.UpdateFavoriteUseCase
 import com.example.e_commerce.utils.extension.toFavoriteEntity
+import com.example.e_commerce.utils.extension.toProductEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class HomeFragmentViewModel @Inject constructor(
     private val getProductUseCase: GetProductUseCase,
     private val saveFavoriteProductUseCase: UpdateFavoriteUseCase,
+    private val addProductUseCase: AddProductUseCase
 ): ViewModel() {
 
     private val _products = MutableStateFlow<List<ProductComponentUIModel>?>(emptyList())
@@ -50,6 +53,15 @@ class HomeFragmentViewModel @Inject constructor(
                 }
             }catch (e: Exception) {
                 _saveProductStatus.emit(false)
+            }
+        }
+    }
+
+    fun addToCard(uiModel: ProductComponentUIModel) {
+        viewModelScope.launch {
+            try {
+                addProductUseCase.invoke(uiModel.toProductEntity())
+            }catch (e: Exception) {
             }
         }
     }
