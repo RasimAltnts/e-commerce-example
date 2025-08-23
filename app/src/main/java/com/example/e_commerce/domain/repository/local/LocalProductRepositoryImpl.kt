@@ -14,15 +14,12 @@ class LocalProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao
 ): LocalProductRepository {
 
-    override suspend fun getFavoriteProducts(): List<FavoriteEntity>? =
-        withContext(Dispatchers.IO) {
+    override suspend fun getFavoriteProducts(): List<FavoriteEntity>? = withContext(Dispatchers.IO) {
             return@withContext productDao.getAllFavoriteProduct()
-        }
+    }
 
-    override suspend fun addFavoriteProducts(item: FavoriteEntity) {
-        withContext(Dispatchers.IO) {
+    override suspend fun addFavoriteProducts(item: FavoriteEntity) = withContext(Dispatchers.IO) {
             return@withContext productDao.insertFavorite(item)
-        }
     }
 
     override suspend fun deleteFavoriteProduct(item: FavoriteEntity) = withContext(Dispatchers.IO) {
@@ -43,5 +40,9 @@ class LocalProductRepositoryImpl @Inject constructor(
 
     override suspend fun getProduct(id: String): ProductEntity? = withContext(Dispatchers.IO) {
         return@withContext productDao.getProduct(id)
+    }
+
+    override suspend fun updateProduct(product: ProductEntity) = withContext(Dispatchers.IO) {
+        return@withContext productDao.updateProduct(product)
     }
 }

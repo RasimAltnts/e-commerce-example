@@ -1,5 +1,6 @@
 package com.example.e_commerce.components
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -18,13 +19,14 @@ class ProductComponent @JvmOverloads constructor(
         binding = ProductComponentBinding.inflate(inflater, this, true)
     }
 
+    @SuppressLint("SetTextI18n")
     fun setData(
         model: ProductComponentUIModel,
         onFavoriteClickListener: (() -> Unit),
         onAddToCardClickListener: (() -> Unit)) {
 
         binding.productNameTextView.text = model.name
-        binding.priceTextView.text = model.price
+        binding.priceTextView.text = model.price+ " ₺"
         binding.favoriteIcon.isSelected = model.isFavorite
 
         binding.favoriteIcon.setOnClickListener {

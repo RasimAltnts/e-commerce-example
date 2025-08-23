@@ -5,6 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.updatePadding
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -36,6 +38,13 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setupWithNavController(navController)
         appBar = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController , appBar)
+
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            binding.bottomNavigation.updatePadding(bottom = insets.systemWindowInsetBottom)
+            binding.navHostFragmentContentMain.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
 
     }
 
