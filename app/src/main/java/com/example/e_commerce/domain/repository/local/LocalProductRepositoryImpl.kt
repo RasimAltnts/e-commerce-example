@@ -5,6 +5,7 @@ import com.example.e_commerce.data.local.entity.FavoriteEntity
 import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.data.repository.local.LocalProductRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -45,4 +46,6 @@ class LocalProductRepositoryImpl @Inject constructor(
     override suspend fun updateProduct(product: ProductEntity) = withContext(Dispatchers.IO) {
         return@withContext productDao.updateProduct(product)
     }
+
+    override fun getAllProductsWithFlow(): Flow<List<ProductEntity>> = productDao.getAllProductsWithFlow()
 }
