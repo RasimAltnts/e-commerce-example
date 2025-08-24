@@ -66,6 +66,9 @@ dependencies {
     ksp(libs.room.compiler) // kapt yerine ksp
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockite.core)
+    testImplementation(libs.mockite.kotlin)
+    testImplementation(libs.coroutine.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
