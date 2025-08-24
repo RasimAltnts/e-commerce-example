@@ -68,6 +68,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         initFlows()
         initAdapter()
         viewModel.fetchProducts()
+
+        binding.searchBar.setOnSearchTextChanged {
+            viewModel.setSearchQuery(it)
+        }
     }
 
     private fun initAdapter() {
@@ -93,7 +97,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.products.collect { products ->
-                    products?.let {
+                    products?.let { adapter.submitList(it) }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.filteredProductList.collect { filtered ->
+                    filtered?.let {
                         adapter.submitList(it)
                     }
                 }
