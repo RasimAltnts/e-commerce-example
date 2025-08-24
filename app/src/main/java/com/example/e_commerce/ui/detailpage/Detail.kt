@@ -6,14 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.example.e_commerce.databinding.FragmentDetailBinding
 import com.example.e_commerce.R
+import com.example.e_commerce.SharedViewModel
+import com.example.e_commerce.components.ProductComponentUIModel
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class Detail : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private val args by navArgs<DetailArgs>()
     private lateinit var binding: FragmentDetailBinding
 
@@ -32,7 +41,17 @@ class Detail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setToolBarName()
-        fillData()
+        initFlows()
+
+        viewModel.setProduct(args.productModel)
+
+        binding.addToCartButton.setOnClickListener {
+            sharedViewModel.addToCard(args.productModel)
+        }
+
+        binding.favoriteIcon.setOnClickListener {
+            viewModel.updateFavoriteState(args.productModel)
+        }
     }
 
     /**
@@ -46,11 +65,23 @@ class Detail : Fragment() {
     /**
      * Bu fonksiyon args tan gelen datalar ile ekrani doldurmaktadir
      */
-    private fun fillData() {
-        binding.productTitle.text = args.productModel.name
-        binding.productDesc.text = args.productModel.desc
-        binding.favoriteIcon.isSelected = args.productModel.isFavorite
-        binding.priceTextView.text = args.productModel.price + "₺"
+    private fun fillData(model: ProductComponentUIModel) {
+        binding.productTitle.text = model.name
+        binding.productDesc.text = model.desc
+        binding.favoriteIcon.isSelected = model.isFavorite
+        binding.priceTextView.text = model.price + "₺"
+    }
 
+    private fun initFlows() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.productModel.collect { uiModel ->
+                    println("test12345")
+                    uiModel?.let {
+                        fillData(uiModel)
+                    }
+                }
+            }
+        }
     }
 }
