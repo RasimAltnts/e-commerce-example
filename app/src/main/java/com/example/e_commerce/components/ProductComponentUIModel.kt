@@ -1,5 +1,7 @@
 package com.example.e_commerce.components
 
+import java.io.Serializable
+
 data class ProductComponentUIModel(
     var id: String,
     var name: String,
@@ -8,4 +10,4 @@ data class ProductComponentUIModel(
     var brand: String,
     var desc: String,
     var isFavorite: Boolean = false,
-)
+): Serializable

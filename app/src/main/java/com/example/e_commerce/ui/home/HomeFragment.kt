@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_commerce.R
 import com.example.e_commerce.components.ProductComponentUIModel
@@ -43,7 +44,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
      * Kullanıcı Item a tıkladıgında bunun altında çalışır
      */
     private val onItemClickListener: (ProductComponentUIModel) -> Unit = {
-        println("onItemClicked::${it.isFavorite}")
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(productModel = it)
+        findNavController().navigate(action)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
