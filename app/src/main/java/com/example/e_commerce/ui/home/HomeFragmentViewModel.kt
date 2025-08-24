@@ -56,13 +56,4 @@ class HomeFragmentViewModel @Inject constructor(
             }
         }
     }
-
-    fun addToCard(uiModel: ProductComponentUIModel) {
-        viewModelScope.launch {
-            try {
-                addProductUseCase.invoke(uiModel.toProductEntity())
-            }catch (e: Exception) {
-            }
-        }
-    }
 }

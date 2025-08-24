@@ -19,6 +19,7 @@ gson = "3.0.0"
 hilt = "2.57.1"
 ksp = "2.0.21-RC-1.0.25"
 room = "2.6.1"
+nav-safe-args = "2.7.7"
 
 
 [libraries]
@@ -55,6 +56,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "nav-safe-args" }
 
 
 

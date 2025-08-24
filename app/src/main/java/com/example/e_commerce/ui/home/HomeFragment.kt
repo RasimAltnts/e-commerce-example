@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.e_commerce.R
+import com.example.e_commerce.SharedViewModel
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.databinding.FragmentHomeBinding
 import com.example.e_commerce.ui.adapter.EqualSpacingItemDecoration
@@ -23,6 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
     private lateinit var adapter: ProductAdapter
 
     /**
@@ -36,14 +39,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
      * Kullanıcı addToCard buttonuna bastığında bunun altında çalışır
      */
     private val addToCardListener: (ProductComponentUIModel) -> Unit = { uiModel ->
-        viewModel.addToCard(uiModel)
+        sharedViewModel.addToCard(uiModel)
     }
 
     /**
      * Kullanıcı Item a tıkladıgında bunun altında çalışır
      */
     private val onItemClickListener: (ProductComponentUIModel) -> Unit = {
-        println("onItemClicked::${it.isFavorite}")
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(productModel = it)
+        findNavController().navigate(action)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
