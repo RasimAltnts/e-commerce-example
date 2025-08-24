@@ -55,11 +55,10 @@ class BasketViewModel @Inject constructor(
                     productTotalPrice = item.price.toDouble() * item.count
                     totalPrice = totalPrice + productTotalPrice
                 }
-                _totalPrice.emit(totalPrice)
+                _totalPrice.value = totalPrice
             }catch (e: Exception) {
 
             }
-
         }
     }
 }
