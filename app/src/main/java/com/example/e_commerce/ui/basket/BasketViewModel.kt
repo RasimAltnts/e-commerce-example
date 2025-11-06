@@ -6,6 +6,7 @@ import com.example.e_commerce.domain.usecase.GetAllOrdersUseCase
 import com.example.e_commerce.domain.usecase.UpdateOrdersUseCase
 import com.example.e_commerce.ui.model.OrdersUiModel
 import com.example.e_commerce.utils.enums.OrdersProcessEnum
+import com.example.e_commerce.utils.extension.toOrdersUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +29,7 @@ class BasketViewModel @Inject constructor(
     fun getAllOrders() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _orders.emit(getAllOrdersUseCase())
+                _orders.emit(getAllOrdersUseCase().toOrdersUiModel())
             }catch (e: Exception) {
 
             }
@@ -38,7 +39,7 @@ class BasketViewModel @Inject constructor(
     fun updateOrders(model: OrdersUiModel, type: OrdersProcessEnum) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                updateOrdersUseCase(model,type)
+                updateOrdersUseCase(model.id,type)
                 getAllOrders()
             }catch (e: Exception) {
 

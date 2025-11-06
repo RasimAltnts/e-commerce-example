@@ -3,8 +3,8 @@ package com.example.e_commerce
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.data.local.entity.FavoriteEntity
 import com.example.e_commerce.data.local.entity.ProductEntity
-import com.example.e_commerce.domain.model.ProductModel
-import com.example.e_commerce.domain.model.ProductModelItem
+import com.example.e_commerce.data.model.ProductModel
+import com.example.e_commerce.data.model.ProductModelItem
 import com.example.e_commerce.utils.extension.toFavoriteEntity
 import com.example.e_commerce.utils.extension.toOrderUiModel
 import com.example.e_commerce.utils.extension.toUIModel

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.data.local.entity.ProductEntity
+import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.usecase.AddProductUseCase
 import com.example.e_commerce.domain.usecase.GetAllProductUseCase
 import com.example.e_commerce.utils.extension.toProductEntity
@@ -20,7 +21,7 @@ class SharedViewModel @Inject constructor(
     private val addProductUseCase: AddProductUseCase
 ): ViewModel() {
 
-    val productList: StateFlow<List<ProductEntity>> =
+    val productList: StateFlow<List<ProductLocalModel>> =
         getAllProductUseCase()
             .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 

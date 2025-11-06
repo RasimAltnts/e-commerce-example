@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.domain.usecase.UpdateFavoriteUseCase
-import com.example.e_commerce.utils.extension.toFavoriteEntity
+import com.example.e_commerce.utils.extension.toFavoriteLocalModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +24,7 @@ class DetailViewModel @Inject constructor(
     fun updateFavoriteState(product: ProductComponentUIModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                saveFavoriteProductUseCase.invoke(product.toFavoriteEntity(),product.isFavorite)
+                saveFavoriteProductUseCase.invoke(product.toFavoriteLocalModel(),product.isFavorite)
                 _productModel.update {
                     product.copy(isFavorite = !product.isFavorite)
                 }

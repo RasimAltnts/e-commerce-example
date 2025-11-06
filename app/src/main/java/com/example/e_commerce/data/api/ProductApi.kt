@@ -1,6 +1,6 @@
 package com.example.e_commerce.data.api
 
-import com.example.e_commerce.domain.model.ProductModel
+import com.example.e_commerce.data.model.ProductModel
 import retrofit2.Response
 import retrofit2.http.GET
 
