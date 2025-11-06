@@ -1,3 +1,3 @@
-package com.example.e_commerce.domain.model
+package com.example.e_commerce.data.model
 
 class ProductModel : ArrayList<ProductModelItem>()

@@ -6,7 +6,7 @@ import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.domain.usecase.AddProductUseCase
 import com.example.e_commerce.domain.usecase.GetProductUseCase
 import com.example.e_commerce.domain.usecase.UpdateFavoriteUseCase
-import com.example.e_commerce.utils.extension.toFavoriteEntity
+import com.example.e_commerce.utils.extension.toFavoriteLocalModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -51,7 +51,21 @@ class HomeFragmentViewModel @Inject constructor(
     fun fetchProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _products.emit(getProductUseCase.invoke())
+
+                val productList = getProductUseCase.invoke()
+                val uiModel = productList?.map {
+                    ProductComponentUIModel(
+                        id = it.id,
+                        name = it.name,
+                        price = it.price,
+                        model = it.model,
+                        brand = it.brand,
+                        desc = it.desc,
+                        isFavorite = it.isFavorite
+                    )
+                }
+
+                _products.emit(uiModel)
             }catch (e: Exception) {
 
             }
@@ -61,7 +75,7 @@ class HomeFragmentViewModel @Inject constructor(
     fun updateFavoriteProduct(uiModel: ProductComponentUIModel) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                saveFavoriteProductUseCase.invoke(uiModel.toFavoriteEntity(),uiModel.isFavorite)
+                saveFavoriteProductUseCase.invoke(uiModel.toFavoriteLocalModel(),uiModel.isFavorite)
                 _products.update { list ->
                     list?.map {
                         if (it.id == uiModel.id)

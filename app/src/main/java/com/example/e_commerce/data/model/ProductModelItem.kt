@@ -1,4 +1,4 @@
-package com.example.e_commerce.domain.model
+package com.example.e_commerce.data.model
 
 data class ProductModelItem(
     val brand: String,

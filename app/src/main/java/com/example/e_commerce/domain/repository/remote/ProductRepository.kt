@@ -1,7 +1,7 @@
 package com.example.e_commerce.domain.repository.remote
 
-import com.example.e_commerce.domain.model.ProductModel
+import com.example.e_commerce.domain.model.ProductDomainModel
 
 interface ProductRepository {
-    suspend fun getProducts(): ProductModel?
+    suspend fun getProducts(): List<ProductDomainModel>?
 }

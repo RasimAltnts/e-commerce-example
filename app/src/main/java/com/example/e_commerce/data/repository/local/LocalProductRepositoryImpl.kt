@@ -1,8 +1,13 @@
 package com.example.e_commerce.data.repository.local
 
 import com.example.e_commerce.data.local.dao.ProductDao
-import com.example.e_commerce.data.local.entity.FavoriteEntity
 import com.example.e_commerce.data.local.entity.ProductEntity
+import com.example.e_commerce.data.mapper.toDomain
+import com.example.e_commerce.data.mapper.toEntity
+import com.example.e_commerce.data.mapper.toFavoriteLocalModel
+import com.example.e_commerce.data.mapper.toProductLocalModel
+import com.example.e_commerce.domain.model.FavoriteLocalModel
+import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,37 +20,37 @@ class LocalProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao
 ): LocalProductRepository {
 
-    override suspend fun getFavoriteProducts(): List<FavoriteEntity>? =
+    override suspend fun getFavoriteProducts(): List<FavoriteLocalModel>? =
         withContext(Dispatchers.IO) {
-            return@withContext productDao.getAllFavoriteProduct()
+            return@withContext productDao.getAllFavoriteProduct().toFavoriteLocalModel()
         }
 
-    override suspend fun addFavoriteProducts(item: FavoriteEntity) = withContext(Dispatchers.IO) {
-        return@withContext productDao.insertFavorite(item)
+    override suspend fun addFavoriteProducts(item: FavoriteLocalModel) = withContext(Dispatchers.IO) {
+        return@withContext productDao.insertFavorite(item.toEntity())
     }
 
-    override suspend fun deleteFavoriteProduct(item: FavoriteEntity) = withContext(Dispatchers.IO) {
-        return@withContext productDao.deleteFavorite(item)
+    override suspend fun deleteFavoriteProduct(item: FavoriteLocalModel) = withContext(Dispatchers.IO) {
+        return@withContext productDao.deleteFavorite(item.toEntity())
     }
 
-    override suspend fun getAllProducts(): List<ProductEntity> = withContext(Dispatchers.IO) {
-        return@withContext productDao.getAllProduct()
+    override suspend fun getAllProducts(): List<ProductLocalModel> = withContext(Dispatchers.IO) {
+        return@withContext productDao.getAllProduct().toProductLocalModel()
     }
 
-    override suspend fun addProduct(item: ProductEntity) = withContext(Dispatchers.IO) {
-        return@withContext productDao.insertProduct(item)
+    override suspend fun addProduct(item: ProductLocalModel) = withContext(Dispatchers.IO) {
+        return@withContext productDao.insertProduct(item.toEntity())
     }
 
-    override suspend fun deleteProduct(item: ProductEntity) = withContext(Dispatchers.IO) {
-        return@withContext productDao.deleteProduct(item)
+    override suspend fun deleteProduct(item: ProductLocalModel) = withContext(Dispatchers.IO) {
+        return@withContext productDao.deleteProduct(item.toEntity())
     }
 
-    override suspend fun getProduct(id: String): ProductEntity? = withContext(Dispatchers.IO) {
-        return@withContext productDao.getProduct(id)
+    override suspend fun getProduct(id: String): ProductLocalModel? = withContext(Dispatchers.IO) {
+        return@withContext productDao.getProduct(id)?.toDomain()
     }
 
-    override suspend fun updateProduct(product: ProductEntity) = withContext(Dispatchers.IO) {
-        return@withContext productDao.updateProduct(product)
+    override suspend fun updateProduct(product: ProductLocalModel) = withContext(Dispatchers.IO) {
+        return@withContext productDao.updateProduct(product.toEntity())
     }
 
     override fun getAllProductsWithFlow(): Flow<List<ProductEntity>> = productDao.getAllProductsWithFlow()
