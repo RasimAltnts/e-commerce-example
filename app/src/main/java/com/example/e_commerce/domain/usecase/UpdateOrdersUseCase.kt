@@ -11,6 +11,7 @@ class UpdateOrdersUseCase @Inject constructor(
 
     suspend operator fun invoke(orderId: String,type: OrdersProcessEnum) {
         val item = localProductRepository.getProduct(orderId)
+        println("item::$item")
         when(type) {
             OrdersProcessEnum.MINUS -> minusProcess(item)
             OrdersProcessEnum.PLUS -> plusProcess(item)
@@ -37,6 +38,7 @@ class UpdateOrdersUseCase @Inject constructor(
     private suspend fun plusProcess(item: ProductLocalModel?) {
         item?.let {
             it.count = it.count.plus(1)
+            println("plusProcess::${it.count}")
             localProductRepository.updateProduct(it)
         }
     }

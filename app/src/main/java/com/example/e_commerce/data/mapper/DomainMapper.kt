@@ -46,7 +46,8 @@ fun ProductLocalModel.toEntity(): ProductEntity {
     return ProductEntity(
         id = this.id,
         name = this.name,
-        price = this.price
+        price = this.price,
+        count = this.count
     )
 }
 

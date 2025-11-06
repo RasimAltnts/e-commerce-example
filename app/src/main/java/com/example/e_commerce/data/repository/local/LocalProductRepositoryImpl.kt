@@ -11,11 +11,10 @@ import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
 class LocalProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao
 ): LocalProductRepository {
@@ -50,8 +49,13 @@ class LocalProductRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateProduct(product: ProductLocalModel) = withContext(Dispatchers.IO) {
-        return@withContext productDao.updateProduct(product.toEntity())
+        val entity = product.toEntity()
+        println("entity::$entity")
+        return@withContext productDao.updateProduct(entity)
     }
 
-    override fun getAllProductsWithFlow(): Flow<List<ProductEntity>> = productDao.getAllProductsWithFlow()
+    override fun getAllProductsWithFlow(): Flow<List<ProductLocalModel>> =
+        productDao.getAllProductsWithFlow().map { entities ->
+            entities.toProductLocalModel()
+        }
 }

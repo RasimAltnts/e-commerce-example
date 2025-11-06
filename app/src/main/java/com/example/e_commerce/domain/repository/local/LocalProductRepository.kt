@@ -1,6 +1,5 @@
 package com.example.e_commerce.domain.repository.local
 
-import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.domain.model.FavoriteLocalModel
 import com.example.e_commerce.domain.model.ProductLocalModel
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +14,5 @@ interface LocalProductRepository {
     suspend fun deleteProduct(item: ProductLocalModel)
     suspend fun getProduct(id: String): ProductLocalModel?
     suspend fun updateProduct(product: ProductLocalModel)
-    fun getAllProductsWithFlow(): Flow<List<ProductEntity>>
-
+    fun getAllProductsWithFlow(): Flow<List<ProductLocalModel>>
 }

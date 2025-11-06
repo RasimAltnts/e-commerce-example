@@ -37,6 +37,5 @@ interface ProductDao {
     suspend fun updateProduct(product: ProductEntity)
 
      @Query("SELECT * FROM products")
-    fun getAllProductsWithFlow(): Flow<List<ProductEntity>>
-
+     fun getAllProductsWithFlow(): Flow<List<ProductEntity>>
 }
