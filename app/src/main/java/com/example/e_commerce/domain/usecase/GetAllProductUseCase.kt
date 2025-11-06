@@ -1,7 +1,7 @@
 package com.example.e_commerce.domain.usecase
 
 import com.example.e_commerce.data.local.entity.ProductEntity
-import com.example.e_commerce.data.repository.local.LocalProductRepository
+import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

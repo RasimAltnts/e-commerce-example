@@ -1,4 +1,4 @@
-package com.example.e_commerce.data.repository.local
+package com.example.e_commerce.domain.repository.local
 
 import com.example.e_commerce.data.local.entity.FavoriteEntity
 import com.example.e_commerce.data.local.entity.ProductEntity

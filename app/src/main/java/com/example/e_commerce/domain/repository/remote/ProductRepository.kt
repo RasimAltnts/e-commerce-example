@@ -1,4 +1,4 @@
-package com.example.e_commerce.data.repository.remote
+package com.example.e_commerce.domain.repository.remote
 
 import com.example.e_commerce.domain.model.ProductModel
 

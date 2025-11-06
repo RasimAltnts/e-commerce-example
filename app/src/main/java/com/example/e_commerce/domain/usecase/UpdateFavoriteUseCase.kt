@@ -1,7 +1,7 @@
 package com.example.e_commerce.domain.usecase
 
 import com.example.e_commerce.data.local.entity.FavoriteEntity
-import com.example.e_commerce.data.repository.local.LocalProductRepository
+import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import javax.inject.Inject
 
 class UpdateFavoriteUseCase @Inject constructor(

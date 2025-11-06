@@ -1,7 +1,7 @@
 package com.example.e_commerce.domain.usecase
 
 import com.example.e_commerce.data.local.entity.ProductEntity
-import com.example.e_commerce.data.repository.local.LocalProductRepository
+import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import com.example.e_commerce.ui.model.OrdersUiModel
 import com.example.e_commerce.utils.enums.OrdersProcessEnum
 import javax.inject.Inject
