@@ -1,10 +1,8 @@
 package com.example.e_commerce.domain.usecase
 
-import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.repository.local.LocalProductRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllProductUseCase @Inject constructor(
