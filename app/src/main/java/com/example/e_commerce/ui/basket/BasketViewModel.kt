@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.domain.usecase.GetAllOrdersUseCase
 import com.example.e_commerce.domain.usecase.UpdateOrdersUseCase
+import com.example.e_commerce.domain.utils.enums.OrdersProcessEnum
 import com.example.e_commerce.ui.model.OrdersUiModel
-import com.example.e_commerce.utils.enums.OrdersProcessEnum
-import com.example.e_commerce.utils.extension.toOrdersUiModel
+import com.example.e_commerce.ui.utils.mapper.toOrdersUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

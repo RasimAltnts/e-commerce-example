@@ -3,11 +3,10 @@ package com.example.e_commerce
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.components.ProductComponentUIModel
-import com.example.e_commerce.data.local.entity.ProductEntity
 import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.usecase.AddProductUseCase
 import com.example.e_commerce.domain.usecase.GetAllProductUseCase
-import com.example.e_commerce.utils.extension.toProductEntity
+import com.example.e_commerce.ui.utils.mapper.toProductLocalModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -29,7 +28,7 @@ class SharedViewModel @Inject constructor(
     fun addToCard(uiModel: ProductComponentUIModel) {
         viewModelScope.launch {
             try {
-                addProductUseCase.invoke(uiModel.toProductEntity())
+                addProductUseCase.invoke(uiModel.toProductLocalModel())
             }catch (e: Exception) {
             }
         }
