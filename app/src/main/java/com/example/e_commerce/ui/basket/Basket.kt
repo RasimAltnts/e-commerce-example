@@ -12,9 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerce.databinding.FragmentBasketBinding
+import com.example.e_commerce.domain.utils.enums.OrdersProcessEnum
 import com.example.e_commerce.ui.adapter.OrdersAdapter
 import com.example.e_commerce.ui.model.OrdersUiModel
-import com.example.e_commerce.utils.enums.OrdersProcessEnum
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

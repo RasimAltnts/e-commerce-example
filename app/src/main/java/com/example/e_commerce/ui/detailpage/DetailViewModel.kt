@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce.components.ProductComponentUIModel
 import com.example.e_commerce.domain.usecase.UpdateFavoriteUseCase
-import com.example.e_commerce.utils.extension.toFavoriteLocalModel
+import com.example.e_commerce.ui.utils.mapper.toFavoriteLocalModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

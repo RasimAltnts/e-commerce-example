@@ -2,7 +2,7 @@ package com.example.e_commerce.domain.usecase
 
 import com.example.e_commerce.domain.model.ProductLocalModel
 import com.example.e_commerce.domain.repository.local.LocalProductRepository
-import com.example.e_commerce.utils.enums.OrdersProcessEnum
+import com.example.e_commerce.domain.utils.enums.OrdersProcessEnum
 import javax.inject.Inject
 
 class UpdateOrdersUseCase @Inject constructor(
